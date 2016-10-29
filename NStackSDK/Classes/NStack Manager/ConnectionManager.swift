@@ -48,7 +48,7 @@ enum ConnectionManager {
     
     // MARK: - API Calls -
 
-    static func postAppOpen(oldVersion: String = VersionUtilities.previousAppVersion(),
+    static func postAppOpen(_ oldVersion: String = VersionUtilities.previousAppVersion(),
                                        currentVersion: String = VersionUtilities.currentAppVersion(),
                                        completion: @escaping ((DataResponse<Any>) -> Void)) {
         var params: [String : AnyObject] = [
@@ -96,7 +96,7 @@ enum ConnectionManager {
         ConnectionManager.manager.request(kBaseURL + "translate/mobile/languages", method: .get, parameters:params, headers: defaultHeaders).responseSerializable(completion, unwrapper: defaultUnwrapper)
     }
     
-    static func fetchUpdates(oldVersion: String = VersionUtilities.previousAppVersion(),
+    static func fetchUpdates(_ oldVersion: String = VersionUtilities.previousAppVersion(),
                                         currentVersion: String = VersionUtilities.currentAppVersion(),
                                         completion: @escaping ((DataResponse<Update>) -> Void)) {
         let params:[String : AnyObject] = [

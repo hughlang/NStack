@@ -10,39 +10,39 @@ import UIKit
 import Serializable
 import Alamofire
 
-internal func translationString(keyPath: String) -> String? {
+internal func translationString(_ keyPath: String) -> String? {
 	if keyPath.characters.count == 0 {
 		return nil;
 	}
 	
     let langDict = TranslationManager.sharedInstance.savedTranslationsDict() as NSDictionary
-	return langDict.valueForKeyPath(keyPath) as? String;
+	return langDict.value(forKeyPath: keyPath) as? String;
 }
 
-@IBDesignable public class NOTextView: UITextView {
+@IBDesignable open class NOTextView: UITextView {
 	
-    @IBInspectable public var translationsKeyPath: NSString = ""
+    @IBInspectable open var translationsKeyPath: NSString = ""
     
-	override public func awakeFromNib() {
+	override open func awakeFromNib() {
 		updateFromLang()
 	}
 	
 	func updateFromLang() {
-		let oldSelectable = self.selectable
+		let oldSelectable = self.isSelectable
         let string = translationString(translationsKeyPath as String)
 		if ( string != nil ) {
-			self.selectable = true
+			self.isSelectable = true
 			self.text = string
-			self.selectable = oldSelectable
+			self.isSelectable = oldSelectable
 		}
 	}
 }
 
-@IBDesignable public class NOTextField: UITextField {
+@IBDesignable open class NOTextField: UITextField {
 	
-	@IBInspectable public var placeholderTranslationsKeyPath: NSString = ""
+	@IBInspectable open var placeholderTranslationsKeyPath: NSString = ""
 	
-	override public func awakeFromNib() {
+	override open func awakeFromNib() {
 		updateFromLang()
 	}
 	
@@ -54,29 +54,29 @@ internal func translationString(keyPath: String) -> String? {
 	}
 }
 
-@IBDesignable public class NOButton: UIButton {
-	@IBInspectable public var translationsKeyPath: NSString = ""
+@IBDesignable open class NOButton: UIButton {
+	@IBInspectable open var translationsKeyPath: NSString = ""
 	
-	override public func awakeFromNib() {
+	override open func awakeFromNib() {
 		updateFromLang()
 	}
 	
 	func updateFromLang() {
 		let string = translationString(translationsKeyPath as String)
 		if ( string != nil ) {
-			self.setTitle(string, forState: .Normal)
+			self.setTitle(string, for: UIControlState())
 		}
 	}
 }
 
-@IBDesignable public class NOSegmentControl : UISegmentedControl  {
+@IBDesignable open class NOSegmentControl : UISegmentedControl  {
 	
-	@IBInspectable public var translationKeyPath1 = ""
-	@IBInspectable public var translationKeyPath2 = ""
-	@IBInspectable public var translationKeyPath3 = ""
-	@IBInspectable public var translationKeyPath4 = ""
+	@IBInspectable open var translationKeyPath1 = ""
+	@IBInspectable open var translationKeyPath2 = ""
+	@IBInspectable open var translationKeyPath3 = ""
+	@IBInspectable open var translationKeyPath4 = ""
 	
-	override public func awakeFromNib() {
+	override open func awakeFromNib() {
 		updateFromLang()
 	}
 	
@@ -85,28 +85,28 @@ internal func translationString(keyPath: String) -> String? {
 		if(self.numberOfSegments > 0) {
 			let string1 = translationString(translationKeyPath1)
 			if let string1 = string1 {
-				self.setTitle(string1, forSegmentAtIndex: 0)
+				self.setTitle(string1, forSegmentAt: 0)
 			}
 		}
 		
 		if(self.numberOfSegments > 1) {
 			let string2 = translationString(translationKeyPath2)
 			if ( string2 != nil ) {
-				self.setTitle(string2, forSegmentAtIndex: 1)
+				self.setTitle(string2, forSegmentAt: 1)
 			}
 		}
 		
 		if(self.numberOfSegments > 2) {
 			let string3 = translationString(translationKeyPath3)
 			if ( string3 != nil ) {
-				self.setTitle(string3, forSegmentAtIndex: 2)
+				self.setTitle(string3, forSegmentAt: 2)
 			}
 		}
 		
 		if(self.numberOfSegments > 3) {
 			let string4 = translationString(translationKeyPath4)
 			if ( string4 != nil ) {
-				self.setTitle(string4, forSegmentAtIndex: 3)
+				self.setTitle(string4, forSegmentAt: 3)
 			}
 		}
 		

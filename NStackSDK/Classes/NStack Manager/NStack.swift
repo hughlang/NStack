@@ -37,12 +37,12 @@ open class NStack {
      - parameter configuration: A `Configuration` struct containing API keys and translations type.
      - parameter launchOptions: Launch options passed from `applicationDidFinishLaunching:` func.
      */
-    open class func start(configuration: Configuration,
+    open class func start(_ configuration: Configuration,
                                            launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
-        sharedInstance.start(configuration: configuration, launchOptions: launchOptions)
+        sharedInstance.start(configuration, launchOptions: launchOptions)
     }
 
-    fileprivate func start(configuration: Configuration,
+    fileprivate func start(_ configuration: Configuration,
                                      launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         guard !configured else {
             print("NStack is already configured. Kill the app and start it again with new configuration.")
